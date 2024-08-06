@@ -26,15 +26,11 @@ public class StageManager {
         layout.loadLayout(pane, instance);
 
         Stage stage = new Stage();
-        stage.setTitle("SaintClient | Developer");
+        stage.setTitle("SaintClient");
         stage.getIcons().add(new Image(ResourceConstant.LOGO_ICON));
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
 
         stage.show();
-    }
-
-    public SceneEntry getCurrentScene() {
-        return null;
     }
 }

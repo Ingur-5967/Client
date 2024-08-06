@@ -2,11 +2,9 @@ package ru.solomka.client.core.component;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.option.CssContext;
-import ru.solomka.client.core.math.WindowCalcHelper;
 
 import java.util.Arrays;
 

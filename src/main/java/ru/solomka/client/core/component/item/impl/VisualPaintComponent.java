@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.option.CssContext;
-import ru.solomka.client.tool.Resource;
+import ru.solomka.client.file.Resource;
 
 import java.util.Arrays;
 

@@ -8,7 +8,7 @@ import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.item.tag.Changed;
 import ru.solomka.client.core.component.option.CssContext;
-import ru.solomka.client.core.math.WindowCalcHelper;
+import ru.solomka.client.math.WindowCalcHelper;
 import ru.solomka.client.tool.Pair;
 
 import java.util.Arrays;

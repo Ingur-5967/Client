@@ -6,16 +6,12 @@ import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.entity.SceneEntry;
 import ru.solomka.client.core.component.item.constant.ElementBarEntry;
 import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
-import ru.solomka.client.core.component.layout.AbstractLayout;
 import ru.solomka.client.core.component.layout.Layout;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.core.component.option.CssProperties;
 
-public class HomeLayout extends AbstractLayout implements Layout {
+public class HomeLayout implements Layout {
 
-    public HomeLayout() {
-        super("home");
-    }
 
     @Override
     public void loadLayout(Pane region, SceneEntry entry) {

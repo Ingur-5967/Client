@@ -1,7 +1,7 @@
 package ru.solomka.client.core.component;
 
 import lombok.Getter;
-import ru.solomka.client.tool.Resource;
+import ru.solomka.client.file.Resource;
 
 public class ResourceConstant {
 
@@ -19,7 +19,6 @@ public class ResourceConstant {
     public static final String LOGO_BAR_PRODUCT = Resource.getFileAsResource("icons/bar-icons/product-icon.png").getPath().substring(1);
     public static final String LOGO_BAR_SETTING = Resource.getFileAsResource("icons/bar-icons/fixed-setting-icon.png").getPath().substring(1);
     public static final String LOGO_BAR_HOME = Resource.getFileAsResource("icons/bar-icons/fixed-home-icon.png").getPath().substring(1);
-    public static final String LOGO_BAR_PROFILE = Resource.getFileAsResource("icons/bar-icons/default-profile-icon.jpg").getPath().substring(1);
 
     @Getter
     public enum Color {

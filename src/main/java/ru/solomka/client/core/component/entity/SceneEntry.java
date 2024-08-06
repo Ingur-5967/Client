@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.jetbrains.annotations.NotNull;
-import ru.solomka.client.tool.Resource;
+import ru.solomka.client.file.Resource;
 
 import java.io.IOException;
 import java.util.Objects;

@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.ComponentBuilder;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.SceneItem;
-import ru.solomka.client.core.component.item.impl.DefaultLabel;
 import ru.solomka.client.core.component.item.impl.MultiLabel;
 import ru.solomka.client.core.component.item.impl.pane.DefaultPane;
 import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
@@ -16,7 +15,7 @@ import ru.solomka.client.core.component.item.impl.VisualPaintComponent;
 import ru.solomka.client.core.component.item.impl.button.ContextButton;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.core.component.option.CssProperties;
-import ru.solomka.client.core.math.WindowCalcHelper;
+import ru.solomka.client.math.WindowCalcHelper;
 import ru.solomka.client.tool.Pair;
 
 import java.util.Arrays;

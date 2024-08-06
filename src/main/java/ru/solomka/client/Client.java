@@ -2,8 +2,8 @@ package ru.solomka.client;
 
 import lombok.Getter;
 import ru.solomka.client.core.component.layout.impl.HomeLayout;
-import ru.solomka.client.core.event.EventManager;
-import ru.solomka.client.core.event.impl.ChangeStageEvent;
+import ru.solomka.client.event.EventManager;
+import ru.solomka.client.event.impl.ChangeStageEvent;
 
 import java.lang.reflect.InvocationTargetException;
 

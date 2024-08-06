@@ -1,4 +1,4 @@
-package ru.solomka.client.tool;
+package ru.solomka.client.file;
 
 import ru.solomka.client.Client;
 

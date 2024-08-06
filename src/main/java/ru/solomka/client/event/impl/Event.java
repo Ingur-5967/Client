@@ -1,4 +1,4 @@
-package ru.solomka.client.core.event.impl;
+package ru.solomka.client.event.impl;
 
 import lombok.Getter;
 import ru.solomka.client.core.component.entity.SceneElement;

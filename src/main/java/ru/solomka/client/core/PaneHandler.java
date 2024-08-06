@@ -1,16 +1,9 @@
 package ru.solomka.client.core;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-import ru.solomka.client.tool.Log;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 @AllArgsConstructor @Getter
 public class PaneHandler {

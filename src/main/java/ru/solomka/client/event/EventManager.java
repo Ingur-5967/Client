@@ -1,6 +1,6 @@
-package ru.solomka.client.core.event;
+package ru.solomka.client.event;
 
-import ru.solomka.client.core.event.impl.Event;
+import ru.solomka.client.event.impl.Event;
 
 import java.util.ArrayList;
 import java.util.Arrays;

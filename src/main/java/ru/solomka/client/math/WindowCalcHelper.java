@@ -1,4 +1,4 @@
-package ru.solomka.client.core.math;
+package ru.solomka.client.math;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;

@@ -1,9 +1,7 @@
-package ru.solomka.client.core.event.impl;
+package ru.solomka.client.event.impl;
 
 import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.entity.SceneElement;
-
-import java.io.IOException;
 
 public class ChangeStageEvent extends Event {
 
@@ -11,7 +9,7 @@ public class ChangeStageEvent extends Event {
         super("ChangeStageEvent");
     }
 
-    @Override //TODO: переделать залупу
+    @Override //todo
     public void onTriggeredEvent(@NotNull SceneElement element) {
     }
 }

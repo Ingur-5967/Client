@@ -1,8 +1,6 @@
-package ru.solomka.client.core.event.impl;
+package ru.solomka.client.event.impl;
 
 import ru.solomka.client.core.component.entity.SceneElement;
-
-import java.io.IOException;
 
 public class ClickElementEvent extends Event {
 
