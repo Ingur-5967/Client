@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.jetbrains.annotations.NotNull;
-import ru.solomka.client.file.Resource;
+import ru.solomka.client.file.utils.Resource;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -33,6 +33,7 @@ public class SceneEntry {
     public SceneElement findUnmodifiableElement(@NotNull Scene parent, Predicate<Node> filter) {
         return castToElement(Objects.requireNonNull(parent.getRoot().getChildrenUnmodifiable().stream().filter(filter).findAny().orElse(null)));
     }
+
 
     public FXMLLoader getFXMLLoader() {
         return new FXMLLoader(Resource.getFileAsResource(linkedFXML));

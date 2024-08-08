@@ -1,7 +1,7 @@
 package ru.solomka.client.core.component;
 
 import lombok.Getter;
-import ru.solomka.client.file.Resource;
+import ru.solomka.client.file.utils.Resource;
 
 public class ResourceConstant {
 
@@ -15,6 +15,8 @@ public class ResourceConstant {
     public static final int DEFAULT_VERTICAL_CONTENT_STEP = 9;
     public static final int DEFAULT_HORIZONTAL_CONTENT_STEP = 4;
 
+    public static final String LOGO_CLOSE_APP = Resource.getFileAsResource("icons/close-app-icon.png").getPath().substring(1);
+    public static final String LOGO_ROLL_UP_APP = Resource.getFileAsResource("icons/roll-up-app-icon.png").getPath().substring(1);
     public static final String LOGO_ICON = Resource.getFileAsResource("icons/application-icon.png").getPath().substring(1);
     public static final String LOGO_BAR_PRODUCT = Resource.getFileAsResource("icons/bar-icons/product-icon.png").getPath().substring(1);
     public static final String LOGO_BAR_SETTING = Resource.getFileAsResource("icons/bar-icons/fixed-setting-icon.png").getPath().substring(1);

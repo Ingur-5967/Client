@@ -4,18 +4,23 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import ru.solomka.client.core.component.item.LazyComponent;
 import ru.solomka.client.core.component.item.SceneItem;
+import ru.solomka.client.core.component.item.tag.Container;
 import ru.solomka.client.tool.Pair;
 import ru.solomka.client.tool.functional.OperationSupplier;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane> {
+public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane> , Container {
 
     private final AnchorPane container;
+    private final List<SceneItem<?>> source;
+
 
     public DefaultPane(int width, int height) {
         this.container = new AnchorPane();
+        this.source = new ArrayList<>();
         this.container.setPrefSize(width, height);
     }
 
@@ -26,6 +31,9 @@ public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane> {
         this.container.getChildren().addAll(
             (edit != null ? edit.operate(new Pair<>(this.container, Arrays.stream(entries).toList())).getSecond().stream().map(SceneItem::getItem).toList() : remap)
         );
+
+        source.addAll(List.of(entries));
+
         return this;
     }
 
@@ -43,5 +51,15 @@ public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane> {
     @Override
     public AnchorPane getItem() {
         return this.container;
+    }
+
+    @Override
+    public List<Node> getChildren() {
+        return this.container.getChildren();
+    }
+
+    @Override
+    public List<SceneItem<?>> getSource() {
+        return this.source;
     }
 }

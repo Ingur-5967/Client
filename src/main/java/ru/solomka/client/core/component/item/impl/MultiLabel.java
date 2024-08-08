@@ -18,10 +18,10 @@ public class MultiLabel implements BaseComponent<MultiLabel, AnchorPane> {
 
     private final AnchorPane container;
 
-    public MultiLabel(@NotNull Pair<ComponentBuilder<Label>, ComponentBuilder<Label>> innerContent, int verticalSpace, CssContext... css) {
+    public MultiLabel(@NotNull Pair<ComponentBuilder<Label>, ComponentBuilder<Label>> innerContent, int verticalSpace, CssContext... properties) {
 
         this.container = new AnchorPane();
-        this.container.setStyle(String.join(";", Arrays.stream(css).map(CssContext::getCss).toList()));
+        this.container.setStyle(CssContext.build(properties));
 
         Label mainContent = innerContent.getFirst().create();
         Label subContent = innerContent.getSecond().create();

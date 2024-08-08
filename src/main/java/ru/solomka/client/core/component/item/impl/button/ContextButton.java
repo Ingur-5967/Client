@@ -4,6 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
+import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.item.tag.Changed;
@@ -11,6 +13,7 @@ import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.math.WindowCalcHelper;
 import ru.solomka.client.tool.Pair;
 
+import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -22,17 +25,18 @@ public class ContextButton implements BaseComponent<ContextButton, AnchorPane>, 
     private final AnchorPane container;
     private boolean active;
 
-    public ContextButton(int weight, int height, int space, Pair<String, CssContext[]> content, Image icon, CssContext ...containerCss) {
+    public ContextButton(int weight, int height, int space, @NotNull Pair<String, CssContext[]> content, Image icon, CssContext ...properties) {
         this.active = false;
 
         this.container = new AnchorPane();
         this.container.setPrefSize((weight + content.getSecond().length * 1.2) + (double) space/2, height);
-        this.container.setStyle(String.join(";", Arrays.stream(containerCss).map(CssContext::getCss).toList()));
+        this.container.setStyle(CssContext.build(properties));
 
         Label innerContent = new Label(content.getFirst());
-        innerContent.setStyle(String.join(";", Arrays.stream(content.getSecond()).map(CssContext::getCss).toList()));
+        innerContent.setStyle(CssContext.build(content.getSecond()));
 
         ImageView innerIcon = new ImageView(icon);
+
         innerIcon.setFitWidth(ResourceConstant.DEFAULT_SIZE_ICON_BAR);
         innerIcon.setFitHeight(ResourceConstant.DEFAULT_SIZE_ICON_BAR);
 

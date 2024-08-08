@@ -4,20 +4,24 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import ru.solomka.client.core.component.item.LazyComponent;
 import ru.solomka.client.core.component.item.SceneItem;
+import ru.solomka.client.core.component.item.tag.Container;
 import ru.solomka.client.core.component.item.tag.Linked;
 import ru.solomka.client.core.component.item.tag.enums.ComponentType;
 import ru.solomka.client.tool.Pair;
 import ru.solomka.client.tool.functional.OperationSupplier;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked {
+public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked, Container {
 
     private final AnchorPane container;
+    private final List<SceneItem<?>> source;
 
     public LinkedPane(int weight, int height, String id) {
         this.container = new AnchorPane();
+        this.source = new ArrayList<>();
         container.setPrefSize(weight, height);
         container.setId(id);
     }
@@ -48,17 +52,15 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
     }
 
     @Override
-    public List<Node> getAll() {
-        return this.container.getChildren().stream().toList();
-    }
-
-    @Override
     public LinkedPane preInit(OperationSupplier<Pair<AnchorPane, List<SceneItem<?>>>> edit, SceneItem<?>... entries) {
         List<Node> remap = Arrays.stream(Arrays.stream(entries).map(SceneItem::getItem).toArray(Node[]::new)).toList();
 
         this.container.getChildren().addAll(
                 (edit != null ? edit.operate(new Pair<>(this.container, Arrays.stream(entries).toList())).getSecond().stream().map(SceneItem::getItem).toList() : remap)
         );
+
+        source.addAll(List.of(entries));
+
         return this;
     }
 
@@ -77,6 +79,16 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
     public void setLocation(double x, double y) {
         this.container.setLayoutX(x);
         this.container.setLayoutY(y);
+    }
+
+    @Override
+    public List<Node> getChildren() {
+        return this.container.getChildren();
+    }
+
+    @Override
+    public List<SceneItem<?>> getSource() {
+        return this.source;
     }
 
     /**

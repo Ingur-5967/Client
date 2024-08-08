@@ -4,6 +4,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.entity.SceneEntry;
+import ru.solomka.client.core.component.item.constant.ContextMenuEntry;
 import ru.solomka.client.core.component.item.constant.ElementBarEntry;
 import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
 import ru.solomka.client.core.component.layout.Layout;
@@ -23,6 +24,7 @@ public class HomeLayout implements Layout {
                 new CssContext[]{new CssContext(CssProperties.BACKGROUND_COLOR.getProperty(ResourceConstant.Color.BACKGROUND_BAR.getColor())), new CssContext(CssProperties.BORDER_RADIUS.getProperty(0))}
         ).build();
 
+        LinkedPane contextMenuEntry = new ContextMenuEntry(region,28, 10).build();
 
         // TODO: delete this section of code later refactoring
 
@@ -110,7 +112,7 @@ public class HomeLayout implements Layout {
 //        informationContent.setLocationLayout((int) informationContent.getComponentParent().getLayoutX(), (int) (informationContent.getComponentParent().getLayoutY() + 65));
 
 
-        region.getChildren().add(elementBarEntry.getItem());
+        region.getChildren().addAll(elementBarEntry.getItem(), contextMenuEntry.getItem());
         region.getChildren().add(container);
     }
 }

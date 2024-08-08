@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import ru.solomka.client.core.component.item.SceneItem;
 
 import java.util.function.Supplier;
 

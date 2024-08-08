@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.option.CssContext;
-import ru.solomka.client.file.Resource;
+import ru.solomka.client.file.utils.Resource;
 
 import java.util.Arrays;
 
@@ -14,10 +14,10 @@ public class VisualPaintComponent implements BaseComponent<VisualPaintComponent,
     private final AnchorPane container;
     private final ImageView viewer;
 
-    public VisualPaintComponent(int width, int height, String url, CssContext ...css) {
+    public VisualPaintComponent(int width, int height, String url, CssContext ...properties) {
         this.container = new AnchorPane();
         this.container.setPrefSize(width, height);
-        this.container.setStyle(String.join(";", (Arrays.stream(css).map(CssContext::getCss).toList())));
+        this.container.setStyle(CssContext.build(properties));
 
         Image image = new Image(Resource.getFileAsResource(url).getPath().substring(1));
         this.viewer = new ImageView(image);

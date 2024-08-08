@@ -12,7 +12,7 @@ import ru.solomka.client.core.component.layout.Layout;
 
 public class StageManager {
 
-    public static void changeStage(Stage previous, Layout layout) {
+    public static Stage changeStage(Stage previous, Layout layout) {
 
         if (previous != null) previous.close();
 
@@ -20,7 +20,7 @@ public class StageManager {
         Scene scene = instance.initScene(922, 534);
         SceneElement aRoot = instance.findUnmodifiableElement(scene, a -> a.getId().equals("layout"));
 
-        if(aRoot == null) return;
+        if(aRoot == null) return null;
         AnchorPane pane = (AnchorPane) aRoot.getNode().get();
 
         layout.loadLayout(pane, instance);
@@ -32,5 +32,8 @@ public class StageManager {
         stage.initStyle(StageStyle.TRANSPARENT);
 
         stage.show();
+
+        return stage;
     }
+
 }
