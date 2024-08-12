@@ -24,8 +24,24 @@ module ru.solomka.client {
     opens ru.solomka.client to javafx.fxml;
     exports ru.solomka.client;
 
+    opens ru.solomka.client.core.component.layout to javafx.fxml;
+    exports ru.solomka.client.core.component.layout;
+
+    opens ru.solomka.client.core.component.item to javafx.fxml;
+    exports ru.solomka.client.core.component.item;
+
+    opens ru.solomka.client.tool.functional to javafx.fxml;
+    exports ru.solomka.client.tool.functional;
+
+    opens ru.solomka.client.tool to javafx.fxml;
+    exports ru.solomka.client.tool;
+
     exports ru.solomka.client.core.component;
     opens ru.solomka.client.core.component to javafx.fxml;
+
+    exports ru.solomka.client.core.component.item.tag to javafx.fxml;
+    opens ru.solomka.client.core.component.item.tag;
+
 
     exports ru.solomka.client.core;
     opens ru.solomka.client.core to javafx.fxml;

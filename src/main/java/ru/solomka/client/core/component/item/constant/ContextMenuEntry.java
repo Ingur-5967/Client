@@ -9,7 +9,6 @@ import ru.solomka.client.core.component.option.CssProperties;
 
 import java.util.List;
 
-
 public class ContextMenuEntry implements SceneModule<LinkedPane> {
 
     private final LinkedPane container;

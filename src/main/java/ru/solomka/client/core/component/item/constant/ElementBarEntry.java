@@ -25,10 +25,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Test module
- */
-
 public class ElementBarEntry implements SceneModule<LinkedPane> {
 
     private final LinkedPane container;
