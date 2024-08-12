@@ -2,8 +2,10 @@ package ru.solomka.client.core.component.item.impl.pane;
 
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import ru.solomka.client.core.component.item.LazyComponent;
 import ru.solomka.client.core.component.item.SceneItem;
+import ru.solomka.client.core.component.item.SizeProperties;
 import ru.solomka.client.core.component.item.tag.Container;
 import ru.solomka.client.tool.Pair;
 import ru.solomka.client.tool.functional.OperationSupplier;
@@ -12,11 +14,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane> , Container {
+public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane>, Container {
 
     private final AnchorPane container;
     private final List<SceneItem<?>> source;
-
 
     public DefaultPane(int width, int height) {
         this.container = new AnchorPane();
@@ -46,6 +47,22 @@ public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane> , Con
     @Override
     public DefaultPane preInit(SceneItem<?>... entries) {
         return this.preInit(null, entries);
+    }
+
+    @Override
+    public void addChildren(SceneItem<?> item) {
+        this.container.getChildren().add(item.getItem());
+        this.source.add(item);
+    }
+
+    @Override
+    public void addChildren(Node item) {
+        this.container.getChildren().add(item);
+    }
+
+    @Override
+    public SizeProperties getBounds() {
+        return new SizeProperties(this.container.getPrefWidth(), this.container.getPrefHeight());
     }
 
     @Override

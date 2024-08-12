@@ -17,7 +17,7 @@ public class ComponentBuilder<T extends Node> {
     }
 
     public ComponentBuilder<T> css(CssContext ...css) {
-        source.setStyle(String.join(";", Arrays.stream(css).map(CssContext::getCss).toList()));
+        source.setStyle(CssContext.build(css));
         return this;
     }
 

@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.BaseComponent;

@@ -2,11 +2,15 @@ package ru.solomka.client.core.component.item.impl.pane;
 
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import lombok.NoArgsConstructor;
 import ru.solomka.client.core.component.item.LazyComponent;
 import ru.solomka.client.core.component.item.SceneItem;
+import ru.solomka.client.core.component.item.SizeProperties;
 import ru.solomka.client.core.component.item.tag.Container;
 import ru.solomka.client.core.component.item.tag.Linked;
 import ru.solomka.client.core.component.item.tag.enums.ComponentType;
+import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.tool.Pair;
 import ru.solomka.client.tool.functional.OperationSupplier;
 
@@ -19,11 +23,12 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
     private final AnchorPane container;
     private final List<SceneItem<?>> source;
 
-    public LinkedPane(int weight, int height, String id) {
+    public LinkedPane(int weight, int height, String id, CssContext ...properties) {
         this.container = new AnchorPane();
         this.source = new ArrayList<>();
         container.setPrefSize(weight, height);
         container.setId(id);
+        container.setStyle(CssContext.build(properties));
     }
 
     @Override
@@ -64,12 +69,6 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
         return this;
     }
 
-    /**
-     * Used by init AnchorPane
-     *
-     * @return init object of LinkedPane
-     */
-
     @Override
     public LinkedPane preInit(SceneItem<?>... entries) {
         return this.preInit(null, entries);
@@ -82,6 +81,17 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
     }
 
     @Override
+    public void addChildren(SceneItem<?> item) {
+        this.container.getChildren().add(item.getItem());
+        this.source.add(item);
+    }
+
+    @Override
+    public void addChildren(Node item) {
+        this.getChildren().add(item);
+    }
+
+    @Override
     public List<Node> getChildren() {
         return this.container.getChildren();
     }
@@ -91,11 +101,10 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
         return this.source;
     }
 
-    /**
-     * Get initial AnchorPane of LinkedPane
-     *
-     * @return already initial object of LinkedPane
-     */
+    @Override
+    public SizeProperties getBounds() {
+        return new SizeProperties(this.container.getPrefWidth(), this.container.getPrefHeight());
+    }
 
     @Override
     public AnchorPane getItem() {

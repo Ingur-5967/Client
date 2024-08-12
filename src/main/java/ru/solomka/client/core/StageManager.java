@@ -1,14 +1,19 @@
 package ru.solomka.client.core;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ru.solomka.client.core.component.ResourceConstant;
-import ru.solomka.client.core.component.entity.SceneElement;
 import ru.solomka.client.core.component.entity.SceneEntry;
+import ru.solomka.client.core.component.item.SceneItem;
+import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
+import ru.solomka.client.core.component.item.tag.Container;
 import ru.solomka.client.core.component.layout.Layout;
+import ru.solomka.client.core.component.option.CssContext;
+import ru.solomka.client.core.component.option.CssProperties;
 
 public class StageManager {
 
@@ -18,10 +23,27 @@ public class StageManager {
 
         SceneEntry instance = new SceneEntry("basic.fxml");
         Scene scene = instance.initScene(922, 534);
-        SceneElement aRoot = instance.findUnmodifiableElement(scene, a -> a.getId().equals("layout"));
+
+        LinkedPane canvas = (LinkedPane) Container.fromSource(LinkedPane.class, new AnchorPane(), new Object[]{922, 534, "layout", new CssContext[] {new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("#353055"))}});
+
+        canvas.getSource().addAll(scene.getRoot().getChildrenUnmodifiable().stream().map(item -> new SceneItem<>() {
+            @Override
+            public void setLocation(double x, double y) {
+                item.setLayoutX(x);
+                item.setLayoutY(y);
+            }
+
+            @Override
+            public Node getItem() {
+                return item;
+            }
+        }).toList());
+
+        SceneItem<?> aRoot = instance.findElement(canvas, a -> a.getItem().getId().equals("layout"));
 
         if(aRoot == null) return null;
-        AnchorPane pane = (AnchorPane) aRoot.getNode().get();
+
+        AnchorPane pane = (AnchorPane) aRoot.getItem();
 
         layout.loadLayout(pane, instance);
 

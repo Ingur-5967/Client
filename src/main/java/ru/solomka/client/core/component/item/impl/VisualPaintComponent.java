@@ -4,10 +4,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import ru.solomka.client.core.component.item.BaseComponent;
+import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.file.utils.Resource;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class VisualPaintComponent implements BaseComponent<VisualPaintComponent, AnchorPane> {
 
@@ -25,6 +28,7 @@ public class VisualPaintComponent implements BaseComponent<VisualPaintComponent,
         viewer.setFitWidth(width);
         viewer.setFitHeight(height);
     }
+
 
     @Override
     public void setLocation(double x, double y) {

@@ -17,6 +17,10 @@ public class CssContext {
         return String.join(";", Arrays.stream(contexts).map(CssContext::getCss).toList());
     }
 
+    public static CssContext from(String css) {
+        return new CssContext(css);
+    }
+
     public static CssContext empty() {
         return new CssContext("");
     }

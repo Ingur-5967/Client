@@ -102,8 +102,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
                 new Image(ResourceConstant.LOGO_BAR_SETTING),
                 new CssContext(CssProperties.BACKGROUND_COLOR.getProperty(""))
         ).load();
-
-
+        
         String username = "User32@mail.ru + negr";
 
         ModuleButton profileButton = new ModuleButton(
@@ -111,7 +110,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
                 new MultiLabel(
                         new Pair<>(
                                 ComponentBuilder.of(new Label()).css(
-                                        new CssContext(CssProperties.FONT_SIZE.getProperty(15)),
+                                        new CssContext(CssProperties.FONT_SIZE.getProperty(14)),
                                         new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("white"))).text((username.length() > 14 ? username.substring(0, 14).concat("...") : username)),
                                 ComponentBuilder.of(new Label()).css(
                                         new CssContext(CssProperties.FONT_SIZE.getProperty(12)),
@@ -135,13 +134,9 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
             container.get(eIndex).setLayoutY(container.get(eIndex - 1).getLayoutY() + (eIndex == 1 ? initialPane.getPrefHeight() / 3.5 : 65));
         }
 
-
-
         this.container.getSource().stream().skip(1).forEach(element -> {
             Node node = element.getItem();
-
             node.setOnMouseClicked(_ -> new ChangeStateEvent().onTriggeredEvent(this.container, element));
-
         });
 
         initialPane.setStyle(CssContext.build(properties));
