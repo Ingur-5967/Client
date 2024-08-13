@@ -19,7 +19,7 @@ public class ModuleButton implements Changed<Boolean>, BaseComponent<ModuleButto
     private final AnchorPane container;
     private boolean state;
 
-    public ModuleButton(int weight, int height, int space, @NotNull SceneItem<?> sceneItem, Image icon, CssContext ...properties) {
+    public ModuleButton(int weight, int height, int space, String id, @NotNull SceneItem<?> sceneItem, Image icon, CssContext ...properties) {
 
         this.container = new AnchorPane();
 
@@ -27,6 +27,7 @@ public class ModuleButton implements Changed<Boolean>, BaseComponent<ModuleButto
 
         this.container.setPrefSize(weight + (double) space/2, height);
         this.container.setStyle(CssContext.build(properties));
+        this.container.setId(id);
 
         ImageView innerIcon = new ImageView(icon);
 

@@ -2,6 +2,9 @@ package ru.solomka.client.core.component.item.constant;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import ru.solomka.client.AppLoader;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
 import ru.solomka.client.core.component.option.CssContext;
@@ -13,27 +16,33 @@ public class ContextMenuEntry implements SceneModule<LinkedPane> {
 
     private final LinkedPane container;
 
-    public ContextMenuEntry(int horizontalSpace) {
+    public ContextMenuEntry(Pane parent, int horizontalSpace, int verticalSpace) {
 
-        this.container = new LinkedPane(30 + horizontalSpace, 15, "contextMenu", new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("red")));
+        this.container = new LinkedPane(35 + horizontalSpace, 18, "contextMenu", new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
 
         ImageView closeApp = new ImageView(new Image(ResourceConstant.LOGO_CLOSE_APP));
         ImageView rollUpApp = new ImageView(new Image(ResourceConstant.LOGO_ROLL_UP_APP));
 
-        closeApp.setFitHeight(15);
-        closeApp.setFitWidth(15);
+        closeApp.setFitHeight(18);
+        closeApp.setFitWidth(18);
 
-        rollUpApp.setFitWidth(15);
-        rollUpApp.setFitHeight(15);
+        rollUpApp.setFitWidth(17);
+        rollUpApp.setFitHeight(17);
 
-        closeApp.setLayoutX(0);
-        closeApp.setLayoutY(0);
+        AnchorPane closeAppWrapper = new AnchorPane(closeApp);
+        AnchorPane rollUpWrapper = new AnchorPane(rollUpApp);
 
-        rollUpApp.setLayoutX(closeApp.getLayoutX() + horizontalSpace);
-        rollUpApp.setLayoutY(0);
+        closeAppWrapper.setLayoutX(0);
+        closeAppWrapper.setLayoutY(0);
 
-        this.container.getChildren().addAll(List.of(rollUpApp, closeApp));
-        this.container.setLocation(10, 19);
+        rollUpWrapper.setLayoutX(closeApp.getLayoutX() + horizontalSpace);
+        rollUpWrapper.setLayoutY(0);
+
+        closeAppWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().close());
+        rollUpWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().toBack());
+
+        this.container.getChildren().addAll(List.of(closeAppWrapper, rollUpWrapper));
+        this.container.setLocation(parent.getPrefWidth() - this.container.getBounds().getWidth(), verticalSpace);
     }
 
     @Override

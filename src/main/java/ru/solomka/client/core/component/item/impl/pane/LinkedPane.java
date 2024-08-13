@@ -108,9 +108,6 @@ public class LinkedPane implements LazyComponent<LinkedPane, AnchorPane>, Linked
 
     @Override
     public AnchorPane getItem() {
-        if(this.container.getChildren().isEmpty())
-            return new AnchorPane();
-
         return this.container;
     }
 }

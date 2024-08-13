@@ -3,6 +3,7 @@ package ru.solomka.client.core.component.item.tag;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.item.LazyComponent;
 import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.item.SizeProperties;
@@ -21,7 +22,7 @@ public interface Container {
     SizeProperties getBounds();
 
     @SuppressWarnings("unchecked")
-    static <I extends Container> Container fromSource(Class<I> instance, Parent region, Object[] properties) {
+    static <I extends Container> Container fromSource(@NotNull Class<I> instance, Parent region, Object[] properties) {
         I loader;
         try {
             loader = (I) instance.getDeclaredConstructors()[0].newInstance(properties);

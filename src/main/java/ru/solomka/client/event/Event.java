@@ -1,7 +1,6 @@
 package ru.solomka.client.event;
 
 import lombok.Getter;
-import ru.solomka.client.core.component.entity.SceneElement;
 import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.item.tag.Container;
 

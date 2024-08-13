@@ -23,7 +23,7 @@ public class HomeLayout implements Layout {
                 new CssContext[]{new CssContext(CssProperties.BACKGROUND_COLOR.getProperty(ResourceConstant.Color.BACKGROUND_BAR.getColor())), new CssContext(CssProperties.BORDER_RADIUS.getProperty(0))}
         ).build();
 
-        LinkedPane contentViewer = new ContentViewerEntry(region, elementBarEntry, 20 , true).build();
+        LinkedPane contentViewer = new ContentViewerEntry(region, elementBarEntry, 20).build();
 
         region.getChildren().addAll(elementBarEntry.getItem(), contentViewer.getItem());
     }

@@ -36,12 +36,14 @@ module ru.solomka.client {
     opens ru.solomka.client.tool to javafx.fxml;
     exports ru.solomka.client.tool;
 
+    opens ru.solomka.client.core.component.item.tag.enums to javafx.fxml;
+    exports ru.solomka.client.core.component.item.tag.enums;
+
     exports ru.solomka.client.core.component;
     opens ru.solomka.client.core.component to javafx.fxml;
 
     exports ru.solomka.client.core.component.item.tag to javafx.fxml;
     opens ru.solomka.client.core.component.item.tag;
-
 
     exports ru.solomka.client.core;
     opens ru.solomka.client.core to javafx.fxml;

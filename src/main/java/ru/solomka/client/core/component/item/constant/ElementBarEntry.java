@@ -1,10 +1,16 @@
 package ru.solomka.client.core.component.item.constant;
 
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.ComponentBuilder;
 import ru.solomka.client.core.component.ResourceConstant;
@@ -33,7 +39,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         this.container = new LinkedPane(160, (int) root.getPrefHeight(), "bottomBar");
 
         DefaultPane logoContainer = new DefaultPane(
-                170, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER
+                170, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, "appLogoContainer"
         ).preInit(
                 operation -> {
 
@@ -70,7 +76,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         logoContainer.getItem().setLayoutY(logoContainer.getItem().getLayoutY() + 10);
 
         ContextButton homeButton = new ContextButton(
-                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, 14,
+                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, 14, "homeButton",
                 new Pair<>("Главная", new CssContext[]{
                         new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("white")),
                         new CssContext(CssProperties.FONT_SIZE.getProperty(16))
@@ -80,7 +86,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         ).load();
 
         ContextButton productButton = new ContextButton(
-                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, 14,
+                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, 14, "productButton",
                 new Pair<>("Товары", new CssContext[]{
                         new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("white")),
                         new CssContext(CssProperties.FONT_SIZE.getProperty(16))
@@ -90,7 +96,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         ).load();
 
         ContextButton settingButton = new ContextButton(
-                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, 14,
+                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, 14, "settingButton",
                 new Pair<>("Настройки", new CssContext[]{
                         new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("white")),
                         new CssContext(CssProperties.FONT_SIZE.getProperty(16))
@@ -101,8 +107,13 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         
         String username = "User32@mail.ru + negr";
 
+        Image profileLogo = ComponentBuilder.of(new ImageView(new File("D:\\Profile-test.png").getPath()))
+                                            .wrapper().size(25, 25)
+                                            .clip(30, 30)
+                                            .snapshot().get().getImage();
+
         ModuleButton profileButton = new ModuleButton(
-                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER - 4, 14,
+                160, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER - 4, 14, "profileButton",
                 new MultiLabel(
                         new Pair<>(
                                 ComponentBuilder.of(new Label()).css(
@@ -113,10 +124,10 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
                                         new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("#0A5F38"))).text("Expired: 01.08.24")
                         ),
                         16,
-                        new CssContext(CssProperties.BACKGROUND_COLOR.getProperty(""))
+                        new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent"))
                 ).load(),
-                new Image(new File("D:\\Profile-test.png").getPath()),
-                new CssContext(CssProperties.BACKGROUND_COLOR.getProperty(""))
+                profileLogo,
+                new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent"))
         ).load();
 
         AnchorPane initialPane = this.container.preInit(logoContainer, homeButton, productButton, settingButton, profileButton).getItem();

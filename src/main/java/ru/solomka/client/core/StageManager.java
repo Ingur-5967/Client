@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.jetbrains.annotations.Nullable;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.entity.SceneEntry;
 import ru.solomka.client.core.component.item.SceneItem;
@@ -17,6 +18,7 @@ import ru.solomka.client.core.component.option.CssProperties;
 
 public class StageManager {
 
+    @Nullable
     public static Stage changeStage(Stage previous, Layout layout) {
 
         if (previous != null) previous.close();
@@ -47,15 +49,16 @@ public class StageManager {
 
         layout.loadLayout(pane, instance);
 
+
         Stage stage = new Stage();
         stage.setTitle("SaintClient");
         stage.getIcons().add(new Image(ResourceConstant.LOGO_ICON));
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
 
+
         stage.show();
 
         return stage;
     }
-
 }

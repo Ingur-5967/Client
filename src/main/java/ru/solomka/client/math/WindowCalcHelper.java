@@ -6,16 +6,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ru.solomka.client.core.component.entity.SceneElement;
-
-import java.util.Arrays;
-import java.util.function.Function;
 
 public class WindowCalcHelper {
 
-    public static double calculateSizeByStep(int step, @NotNull Function<SceneElement, Double> cast, @NotNull SceneElement...elements) {
-        return ((step * elements.length) + Arrays.stream(elements).map(cast).mapToInt(Double::intValue).sum()) - step;
-    }
+//    public static double calculateSizeByStep(int step, @NotNull Function<SceneItem<?>, Double> cast, @NotNull SceneElement...elements) {
+//        return ((step * elements.length) + Arrays.stream(elements).map(cast).mapToInt(Double::intValue).sum()) - step;
+//    }
 
     public static double calculateTopPosition(@NotNull Pane node, Node regular) {
         return getPositiveCentre(node, regular)[1] - (node.getBoundsInLocal().getHeight()/6.9*regular.getBoundsInLocal().getHeight()/2)/1.5;

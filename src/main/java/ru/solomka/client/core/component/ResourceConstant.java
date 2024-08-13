@@ -16,6 +16,7 @@ public class ResourceConstant {
     public static final int DEFAULT_HORIZONTAL_CONTENT_STEP = 4;
 
     public static final String LOGO_CLOSE_APP = Resource.getFileAsResource("icons/close-app-icon.png").getPath().substring(1);
+    public static final String LOGO_WINDOWED_APP = Resource.getFileAsResource("icons/windowed-app-icon.png").getPath().substring(1);
     public static final String LOGO_ROLL_UP_APP = Resource.getFileAsResource("icons/roll-up-app-icon.png").getPath().substring(1);
     public static final String LOGO_ICON = Resource.getFileAsResource("icons/application-icon.png").getPath().substring(1);
     public static final String LOGO_BAR_PRODUCT = Resource.getFileAsResource("icons/bar-icons/product-icon.png").getPath().substring(1);

@@ -19,10 +19,11 @@ public class DefaultPane implements LazyComponent<DefaultPane, AnchorPane>, Cont
     private final AnchorPane container;
     private final List<SceneItem<?>> source;
 
-    public DefaultPane(int width, int height) {
+    public DefaultPane(int width, int height, String id) {
         this.container = new AnchorPane();
         this.source = new ArrayList<>();
         this.container.setPrefSize(width, height);
+        this.container.setId(id);
     }
 
     @Override
