@@ -23,6 +23,14 @@ public class ResourceConstant {
     public static final String LOGO_BAR_SETTING = Resource.getFileAsResource("icons/bar-icons/fixed-setting-icon.png").getPath().substring(1);
     public static final String LOGO_BAR_HOME = Resource.getFileAsResource("icons/bar-icons/fixed-home-icon.png").getPath().substring(1);
 
+    public static final String LOGO_NEXT_ELEMENT = Resource.getFileAsResource("icons/next-page-icon.png").getPath().substring(1);
+    public static final String LOGO_PREVIOUS_ELEMENT = Resource.getFileAsResource("icons/previous-page-icon.png").getPath().substring(1);
+
+    public static final String LOGO_REFRESH_CONTENT = Resource.getFileAsResource("icons/layout/home/refresh-update-icon.png").getPath().substring(1);
+
+    public static final String LOGO_DOWNLOAD = Resource.getFileAsResource("icons/download-icon.png").getPath().substring(1);
+
+
     @Getter
     public enum Color {
 
