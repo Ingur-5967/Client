@@ -7,6 +7,7 @@ import ru.solomka.client.core.component.item.tag.enums.ComponentType;
 import java.util.List;
 
 public interface Linked {
+    Node get(String id);
     Node get(int position);
     Node get(int position, ComponentType type);
     Node findFirst(ComponentType type);

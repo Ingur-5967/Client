@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.entity.SceneEntry;
 import ru.solomka.client.core.component.item.SceneItem;
-import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
+import ru.solomka.client.core.component.item.impl.LinkedPane;
 import ru.solomka.client.core.component.item.tag.Container;
 import ru.solomka.client.core.component.layout.Layout;
 import ru.solomka.client.core.component.option.CssContext;
@@ -26,20 +26,9 @@ public class StageManager {
         SceneEntry instance = new SceneEntry("basic.fxml");
         Scene scene = instance.initScene(922, 534);
 
-        LinkedPane canvas = (LinkedPane) Container.fromSource(LinkedPane.class, new AnchorPane(), new Object[]{922, 534, "layout", new CssContext[] {new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("#353055"))}});
+        LinkedPane canvas = ((LinkedPane) Container.fromSource(LinkedPane.class, new AnchorPane(), new Object[]{922, 534, "layout"})).initStyle(new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("#353055")));
 
-        canvas.getSource().addAll(scene.getRoot().getChildrenUnmodifiable().stream().map(item -> new SceneItem<>() {
-            @Override
-            public void setLocation(double x, double y) {
-                item.setLayoutX(x);
-                item.setLayoutY(y);
-            }
-
-            @Override
-            public Node getItem() {
-                return item;
-            }
-        }).toList());
+        canvas.getSource().addAll(scene.getRoot().getChildrenUnmodifiable().stream().map(SceneItem::fromSource).toList());
 
         SceneItem<?> aRoot = instance.findElement(canvas, a -> a.getItem().getId().equals("layout"));
 
@@ -49,13 +38,11 @@ public class StageManager {
 
         layout.loadLayout(pane, instance);
 
-
         Stage stage = new Stage();
         stage.setTitle("SaintClient");
         stage.getIcons().add(new Image(ResourceConstant.LOGO_ICON));
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
-
 
         stage.show();
 

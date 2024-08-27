@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.option.CssContext;
 
 import java.io.File;
@@ -29,6 +30,15 @@ public class ComponentBuilder<T extends Node> {
         return this;
     }
 
+    public ComponentBuilder<T> image(String url) {
+        if(!(source instanceof ImageView))
+            throw new IllegalArgumentException("Component must have a image");
+
+        ((ImageView) source).setImage(new Image(url));
+
+        return this;
+    }
+
     public ComponentBuilder<T> text(String content) {
         if(!(source instanceof Label))
             throw new IllegalArgumentException("Component must have a label");
@@ -38,18 +48,28 @@ public class ComponentBuilder<T extends Node> {
         return this;
     }
 
+    public ComponentBuilder<T> padding(@NotNull Padding padding) {
+        this.source.setLayoutX(this.source.getLayoutX() + padding.getLeft() + padding.getRight());
+        this.source.setLayoutY(this.source.getLayoutY() + padding.getTop() + padding.getBottom());
+        return this;
+    }
+
     public ImageWrapper wrapper() {
         if(!(source instanceof ImageView))
             throw new IllegalArgumentException("Component must have a image");
-        
+
         return new ImageWrapper(((ImageView) source).getImage());
+    }
+
+     public static ImageWrapper wrapper(Image image) {
+            return new ImageWrapper(image);
     }
 
     public static class ImageWrapper {
 
         private final ImageView view;
 
-        protected ImageWrapper(Image view) {
+        public ImageWrapper(Image view) {
             this.view = new ImageView(view);
         }
 
@@ -81,13 +101,13 @@ public class ComponentBuilder<T extends Node> {
             return this;
         }
 
-        public ImageView get() {
-            return this.view;
+        public SceneItem<ImageView> get() {
+            return SceneItem.fromSource(this.view);
         }
     }
 
-    public T create() {
-        return source;
+    public SceneItem<T> create() {
+        return SceneItem.fromSource(source);
     }
 
     @NotNull
@@ -95,5 +115,4 @@ public class ComponentBuilder<T extends Node> {
     public static <S extends Node> ComponentBuilder<S> of(S source) {
         return new ComponentBuilder<>(source);
     }
-
 }

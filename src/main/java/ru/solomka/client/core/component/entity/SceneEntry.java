@@ -26,17 +26,15 @@ public class SceneEntry {
         this.source = new ArrayList<>();
     }
 
-    public Scene initScene(int weight, int height) {
+    public Scene initScene(int width, int height) {
         try {
-            return new Scene(getFXMLLoader().load(), weight, height);
+            return new Scene(getFXMLLoader().load(), width, height);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public SceneItem<?> findElement(@NotNull Container container, Predicate<SceneItem<?>> filter) {
-
-        System.out.println(container.getSource());
         return container.getSource().stream().filter(filter).findAny().orElse(null);
     }
 

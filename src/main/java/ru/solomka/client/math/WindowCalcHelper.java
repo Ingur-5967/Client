@@ -9,10 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class WindowCalcHelper {
 
-//    public static double calculateSizeByStep(int step, @NotNull Function<SceneItem<?>, Double> cast, @NotNull SceneElement...elements) {
-//        return ((step * elements.length) + Arrays.stream(elements).map(cast).mapToInt(Double::intValue).sum()) - step;
-//    }
-
     public static double calculateTopPosition(@NotNull Pane node, Node regular) {
         return getPositiveCentre(node, regular)[1] - (node.getBoundsInLocal().getHeight()/6.9*regular.getBoundsInLocal().getHeight()/2)/1.5;
     }
@@ -34,8 +30,8 @@ public class WindowCalcHelper {
     @NotNull @Contract("_, _ -> new")
     public static double[] getNegativeCentreOfLabel(Pane node, Label regular) {
         return new double[] {
-                (node.getPrefWidth()/2 - regular.getText().length()),
-                (node.getPrefHeight()/2 - regular.getFont().getSize()) - 1,
+                (node.getPrefWidth()/2 - (regular.getText().length() * regular.getFont().getSize())/4),
+                (node.getPrefHeight()/2 - regular.getFont().getSize()) - 2 ,
         };
     }
     @NotNull @Contract("_, _ -> new")
@@ -49,8 +45,8 @@ public class WindowCalcHelper {
     @NotNull @Contract("_, _ -> new")
     public static double[] getPositiveCentreOfLabel(Pane node, Label regular) {
         return new double[] {
-                (node.getPrefWidth()/2 + regular.getText().length()),
-                (node.getPrefHeight()/2 + regular.getFont().getSize()) + 1,
+                (node.getPrefWidth()/2 - regular.getText().length()),
+                (node.getPrefHeight()/2 - regular.getFont().getSize()) + 1,
         };
     }
 

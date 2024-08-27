@@ -1,4 +1,4 @@
-package ru.solomka.client.core.component.item.constant;
+package ru.solomka.client.core.component.item.constant.global;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -6,9 +6,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ru.solomka.client.AppLoader;
 import ru.solomka.client.core.component.ResourceConstant;
-import ru.solomka.client.core.component.item.impl.pane.LinkedPane;
-import ru.solomka.client.core.component.option.CssContext;
-import ru.solomka.client.core.component.option.CssProperties;
+import ru.solomka.client.core.component.item.constant.SceneModule;
+import ru.solomka.client.core.component.item.impl.LinkedPane;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class ContextMenuEntry implements SceneModule<LinkedPane> {
 
     public ContextMenuEntry(Pane parent, int horizontalSpace, int verticalSpace) {
 
-        this.container = new LinkedPane(35 + horizontalSpace, 18, "contextMenu", new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
+        this.container = new LinkedPane(35 + horizontalSpace, 18, "contextMenu");
 
         ImageView closeApp = new ImageView(new Image(ResourceConstant.LOGO_CLOSE_APP));
         ImageView rollUpApp = new ImageView(new Image(ResourceConstant.LOGO_ROLL_UP_APP));
@@ -38,7 +37,7 @@ public class ContextMenuEntry implements SceneModule<LinkedPane> {
         rollUpWrapper.setLayoutX(closeApp.getLayoutX() + horizontalSpace);
         rollUpWrapper.setLayoutY(0);
 
-        closeAppWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().close());
+        closeAppWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().close()); // todo: terminate any process
         rollUpWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().toBack());
 
         this.container.getChildren().addAll(List.of(closeAppWrapper, rollUpWrapper));
