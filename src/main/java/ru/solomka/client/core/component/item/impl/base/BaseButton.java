@@ -8,18 +8,22 @@ import ru.solomka.client.AppLoader;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.item.tag.Interact;
+import ru.solomka.client.core.component.item.tag.ItemAnimation;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.tool.Pair;
 
 import java.util.function.BiConsumer;
 
-public abstract class BaseButton implements BaseComponent<BaseButton, AnchorPane>, Interact {
+public abstract class BaseButton implements BaseComponent<BaseButton, AnchorPane>, ItemAnimation, Interact {
 
     private final AnchorPane region;
+    private boolean animation;
+
 
     public BaseButton(String id) {
         this.region = new AnchorPane();
         this.region.setId(id);
+        this.animation = false;
     }
 
     @Override
@@ -40,6 +44,16 @@ public abstract class BaseButton implements BaseComponent<BaseButton, AnchorPane
     public void setLocation(double x, double y) {
         this.region.setLayoutX(x);
         this.region.setLayoutY(y);
+    }
+
+    @Override
+    public void setAnimationTag(boolean tag) {
+        this.animation = tag;
+    }
+
+    @Override
+    public boolean hasTag() {
+        return this.animation;
     }
 
     @Override

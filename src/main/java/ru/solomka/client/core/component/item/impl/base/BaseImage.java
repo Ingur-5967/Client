@@ -7,19 +7,23 @@ import lombok.Getter;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.item.tag.DataContext;
+import ru.solomka.client.core.component.item.tag.ItemAnimation;
 import ru.solomka.client.core.component.item.tag.enums.ItemAlignment;
 import ru.solomka.client.core.component.option.CssContext;
 
-public class BaseImage implements BaseComponent<BaseImage, AnchorPane>, DataContext {
+public class BaseImage implements BaseComponent<BaseImage, AnchorPane>, ItemAnimation, DataContext {
 
     private final AnchorPane container;
     private final ImageView viewer;
+    private boolean animation;
 
     @Getter private final ItemAlignment orientation;
 
     public BaseImage(Image source, ItemAlignment orientation) {
         this.container = new AnchorPane();
         this.orientation = orientation;
+
+        this.animation = false;
 
         this.viewer = new ImageView(source);
     }
@@ -45,6 +49,16 @@ public class BaseImage implements BaseComponent<BaseImage, AnchorPane>, DataCont
     public void setLocation(double x, double y) {
         this.container.setLayoutX(x);
         this.container.setLayoutY(y);
+    }
+
+    @Override
+    public void setAnimationTag(boolean tag) {
+        this.animation = tag;
+    }
+
+    @Override
+    public boolean hasTag() {
+        return this.animation;
     }
 
     @Override

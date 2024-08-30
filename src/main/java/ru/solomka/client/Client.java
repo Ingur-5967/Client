@@ -19,15 +19,6 @@ public class Client extends AppLoader {
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         instance = Client.class.getDeclaredConstructor().newInstance();
 
-
-//        FileManager fileManager = new FileManager();
-//
-//        fileManager.createDirectoryByPath(String.format("C:\\Users\\%s\\AppData\\Local\\SaintClient", System.getProperty("user.name")));
-//
-//        String[] resource = new String[]{"source/loader-logger.yml", "local.yml"};
-//
-//        FileHandler fileHandler = new FileHandler();
-        
         launch(args);
     }
 }

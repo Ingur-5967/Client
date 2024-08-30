@@ -1,4 +1,4 @@
-package ru.solomka.client.core.component.item.constant.layout;
+package ru.solomka.client.core.component.item.constant.layout.home;
 
 import javafx.scene.image.Image;
 import ru.solomka.client.core.component.ResourceConstant;
@@ -29,9 +29,15 @@ public class NewsViewerEntry implements SceneModule<LinkedPane> {
                 new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent"))
         );
 
+
+        scrollingTool.setContent(
+                new ImageViewer(width, height - 90, ItemAlignment.NONE, new Image(ResourceConstant.O)),
+                new ImageViewer(width, height - 90, ItemAlignment.NONE, new Image(ResourceConstant.T))
+        );
+
         scrollingTool.init();
 
-        scrollingTool.setLocation(0, newsTitle.getItem().getLayoutY() + 25 );
+        scrollingTool.setLocation(0, newsTitle.getItem().getLayoutY() + 30 );
         newsTitle.setLocation(0, 0);
 
         this.container.addChildren(scrollingTool);

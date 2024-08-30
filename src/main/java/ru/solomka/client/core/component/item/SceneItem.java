@@ -1,7 +1,6 @@
 package ru.solomka.client.core.component.item;
 
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.option.CssContext;
 
@@ -12,6 +11,7 @@ public interface SceneItem<T extends Node> {
     <I extends SceneItem<T>> I initStyle(CssContext ...properties);
 
     void setLocation(double x, double y);
+
     T getItem();
 
     @NotNull

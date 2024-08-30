@@ -1,7 +1,12 @@
-package ru.solomka.client.core.component.item.constant.layout;
+package ru.solomka.client.core.component.item.constant.layout.home;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.constant.SceneModule;
 import ru.solomka.client.core.component.item.impl.LinkedPane;
@@ -25,18 +30,34 @@ public class FriendViewerEntry implements SceneModule<LinkedPane> {
                 "Пользователи", new Pair<>(16, CssProperties.TEXT_FILL_COLOR.getProperty("white"))
         );
 
-        ImageButton button = new ImageButton(
+        ImageButton refreshUserList = new ImageButton(
                 20, 20, ItemAlignment.RIGHT, new Image(ResourceConstant.LOGO_REFRESH_CONTENT)
         );
 
-        topContainer.setPrefSize(width, button.getItem().getPrefHeight());
+        refreshUserList.setup((event, source) -> {
+            try {
+                refreshUserList.animation(() -> {
+                    RotateTransition anim = new RotateTransition(Duration.seconds(0.9), refreshUserList.getItem());
+                    anim.setFromAngle(0);
+                    anim.setToAngle(-360);
+                    anim.setInterpolator(Interpolator.LINEAR);
+                    return anim;
+                });
+            } catch (InstantiationException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+
+
+
+        });
+
+        topContainer.setPrefSize(width, refreshUserList.getItem().getPrefHeight());
         topContainer.setLayoutY(10);
 
         defaultFriendContent.setLocation(10, 5);
-        button.setLocation(this.container.getBounds().getWidth() - button.getItem().getPrefWidth() - 7, button.getItem().getLayoutY());
+        refreshUserList.setLocation(this.container.getBounds().getWidth() - refreshUserList.getItem().getPrefWidth() - 7, refreshUserList.getItem().getLayoutY());
 
-        topContainer.getChildren().addAll(defaultFriendContent.getItem(), button.getItem());
-
+        topContainer.getChildren().addAll(defaultFriendContent.getItem(), refreshUserList.getItem());
 
         this.container.getChildren().add(topContainer);
     }

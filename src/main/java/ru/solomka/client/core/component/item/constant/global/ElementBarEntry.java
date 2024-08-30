@@ -75,21 +75,22 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         ContentButton homeButton = new ContentButton(
                 169, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, "homeButton", new ImageViewer(33, 33, ItemAlignment.LEFT, new Image(ResourceConstant.LOGO_BAR_HOME)),
                 new DefaultLabel("Главная", new Pair<>(16, CssProperties.TEXT_FILL_COLOR.getProperty("white"))),
-                new Pair<>(new Padding(5, 0, 0, 0), new Padding(14, 0,0, 0))
+                new Pair<>(new Padding(12, 0, 0, 0), new Padding(20, 0,0, 0))
         ).initStyle(new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
 
         ContentButton productButton = new ContentButton(
                 169, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, "productButton", new ImageViewer(33, 33, ItemAlignment.LEFT, new Image(ResourceConstant.LOGO_BAR_PRODUCT)),
-                new DefaultLabel("Товары", new Pair<>(16, CssProperties.TEXT_FILL_COLOR.getProperty("white"))),
-                new Pair<>(new Padding(5, 0, 0, 0), new Padding(14, 0,0, 0))
+                new DefaultLabel("Сборки", new Pair<>(16, CssProperties.TEXT_FILL_COLOR.getProperty("white"))),
+                new Pair<>(new Padding(12, 0, 0, 0), new Padding(20, 0,0, 0))
         ).initStyle(new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
 
         ContentButton settingButton = new ContentButton(
                 169, ResourceConstant.DEFAULT_SIZE_BUTTON_CONTAINER, "settingButton", new ImageViewer(33, 33, ItemAlignment.LEFT, new Image(ResourceConstant.LOGO_BAR_SETTING)),
                 new DefaultLabel("Настройки", new Pair<>(16, CssProperties.TEXT_FILL_COLOR.getProperty("white"))),
-                new Pair<>(new Padding(5, 0, 0, 0), new Padding(14, 0,0, 0))
+                new Pair<>(new Padding(12, 0, 0, 0), new Padding(20, 0,0, 0))
         ).initStyle(new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
 
+        //test profile block
         String username = "User32@mail.ru + negr";
 
         Image profileLogo = ComponentBuilder.of(new ImageView(new File("D:\\Profile-test.png").getPath()))
@@ -102,7 +103,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
                 new MultiLabel(
                         ComponentBuilder.of(new Label()).css(
                                 new CssContext(CssProperties.FONT_SIZE.getProperty(14)),
-                                new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("white"))).text((username.length() > 14 ? username.substring(0, 14).concat("...") : username))
+                                new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("white"))).text((username.length() > 15 ? username.substring(0, 15).concat("...") : username))
                                 .create().getItem(),
                         ComponentBuilder.of(new Label()).css(
                                 new CssContext(CssProperties.FONT_SIZE.getProperty(12)),

@@ -1,13 +1,18 @@
 package ru.solomka.client.core.component.item.constant.global;
 
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import org.jetbrains.annotations.NotNull;
+import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.constant.SceneModule;
 import ru.solomka.client.core.component.item.impl.LinkedPane;
+import ru.solomka.client.core.component.item.impl.button.ImageButton;
 import ru.solomka.client.core.component.item.impl.text.InputField;
 import ru.solomka.client.core.component.item.tag.Container;
+import ru.solomka.client.core.component.item.tag.enums.ItemAlignment;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.core.component.option.CssProperties;
+import ru.solomka.client.math.WindowCalcHelper;
 import ru.solomka.client.tool.Pair;
 
 public class ContentViewerEntry implements SceneModule<LinkedPane> {
@@ -33,10 +38,14 @@ public class ContentViewerEntry implements SceneModule<LinkedPane> {
                 new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("#383360"))
         );
 
+        ImageButton notification = new ImageButton(18, 18, ItemAlignment.NONE, new Image(ResourceConstant.LOGO_NOTIFICATION));
+
         search.setLocation(search.getItem().getLayoutX() + 20, search.getItem().getLayoutY() + 20);
+        notification.setLocation(search.getItem().getPrefWidth() + 35, WindowCalcHelper.getPositiveCentre(search.getItem(), notification.getItem())[1] + 2);
 
         LinkedPane contextMenuEntry = new ContextMenuEntry(this.container.getItem(), 24, 7).build();
 
+        this.container.addChildren(notification);
         this.container.addChildren(contextMenuEntry);
         this.container.addChildren(search);
     }

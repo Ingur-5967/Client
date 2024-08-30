@@ -30,6 +30,12 @@ public class ResourceConstant {
 
     public static final String LOGO_DOWNLOAD = Resource.getFileAsResource("icons/download-icon.png").getPath().substring(1);
 
+    public static final String LOGO_NOTIFICATION = Resource.getFileAsResource("icons/notification-icon.png").getPath().substring(1);
+
+
+    public static final String O = Resource.getFileAsResource("icons/test/1.jpg").getPath().substring(1);
+    public static final String T = Resource.getFileAsResource("icons/test/2.jpg").getPath().substring(1);
+
 
     @Getter
     public enum Color {

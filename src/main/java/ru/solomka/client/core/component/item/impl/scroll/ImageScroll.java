@@ -23,16 +23,11 @@ public class ImageScroll extends BasePage {
 
         ImageViewer translation = new ImageViewer(
                 (int) this.getBounds().getWidth(), (int) this.getBounds().getHeight(), ItemAlignment.NONE,
-                ((ImageViewer) super.current()).getImage()
+                ((ImageViewer) this.current()).getImage()
         );
 
-        next.setup((_, _) -> {
-            translation.setImage(((ImageViewer) this.next()).getImage());
-        });
-
-        previous.setup((_, _) -> {
-            translation.setImage(((ImageViewer) this.previous()).getImage());
-        });
+        next.setup((_, _) -> translation.setImage(((ImageViewer) this.next()).getImage()));
+        previous.setup((_, _) -> translation.setImage(((ImageViewer) this.previous()).getImage()));
 
         this.getItem().getChildren().add(translation.getItem());
         this.getItem().getChildren().add(next.getItem());

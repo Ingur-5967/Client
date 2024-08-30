@@ -10,7 +10,6 @@ import ru.solomka.client.core.component.item.impl.ImageViewer;
 import ru.solomka.client.core.component.item.impl.base.BaseButton;
 import ru.solomka.client.core.component.item.tag.Changed;
 import ru.solomka.client.core.component.item.tag.enums.ItemAlignment;
-import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.math.WindowCalcHelper;
 import ru.solomka.client.tool.Pair;
 
@@ -20,7 +19,7 @@ public class ContentButton extends BaseButton implements Changed<Boolean> {
 
     private boolean state;
 
-    public ContentButton(int width, int height, String id, @NotNull ImageViewer source, SceneItem<?> content, Pair<Padding, Padding> padding) {
+    public ContentButton(int width, int height, String id, @NotNull ImageViewer source, SceneItem<?> content, @NotNull Pair<Padding, Padding> padding) {
         super(id);
 
         this.state = false;
@@ -65,10 +64,6 @@ public class ContentButton extends BaseButton implements Changed<Boolean> {
         source.getItem().setLayoutY(WindowCalcHelper.getNegativeCentre(parent, source.getItem())[1] + imageEditor.getTop() + imageEditor.getBottom());
 
         parent.getChildren().add(source.getItem());
-    }
-
-    public ContentButton(String id, @NotNull ImageViewer source, SceneItem<?> content, Pair<Padding, Padding> padding) {
-        this(-1, -1, id, source, content, padding);
     }
 
     @Override

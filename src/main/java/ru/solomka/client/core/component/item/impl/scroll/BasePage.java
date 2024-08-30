@@ -25,18 +25,18 @@ public class BasePage extends BasePane implements Page {
 
     @Override
     public <T extends SceneItem<? extends Node>> T next() {
-        if(!this.hasNext()) return current();
-        else {
-            return (T) this.content.get(++this.currentIndex);
+        if(!this.hasNext()) {
+            return current();
         }
+        return (T) this.content.get(++this.currentIndex);
     }
 
     @Override
     public <T extends SceneItem<? extends Node>> T previous() {
-        if(this.currentIndex == 0) return current();
-        else {
-            return (T) this.content.get(--this.currentIndex);
+        if(this.currentIndex == 0) {
+            return current();
         }
+        return (T) this.content.get(--this.currentIndex);
     }
 
     @Override

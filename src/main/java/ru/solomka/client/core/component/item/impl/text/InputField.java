@@ -7,17 +7,22 @@ import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.item.BaseComponent;
 import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.item.tag.DataContext;
+import ru.solomka.client.core.component.item.tag.ItemAnimation;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.core.component.option.CssProperties;
 import ru.solomka.client.tool.Pair;
 
-public class InputField implements BaseComponent<InputField, AnchorPane>, DataContext {
+public class InputField implements BaseComponent<InputField, AnchorPane>, ItemAnimation, DataContext {
 
     private final AnchorPane container;
     private final TextField area;
 
+    private boolean animation;
+
     public InputField(int width, int height, @NotNull Pair<String, Integer> source, CssContext ...properties) {
         this.container = new AnchorPane();
+
+        this.animation = false;
 
         double fixedWidth = width + ((double) (source.getFirst().length() * source.getSecond())/3);
 
@@ -47,6 +52,16 @@ public class InputField implements BaseComponent<InputField, AnchorPane>, DataCo
     public void setLocation(double x, double y) {
         this.container.setLayoutX(x);
         this.container.setLayoutY(y);
+    }
+
+    @Override
+    public void setAnimationTag(boolean tag) {
+        this.animation = tag;
+    }
+
+    @Override
+    public boolean hasTag() {
+        return this.animation;
     }
 
     @Override

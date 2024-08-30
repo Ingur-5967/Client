@@ -1,8 +1,11 @@
-package ru.solomka.client.core.component.item.constant.layout;
+package ru.solomka.client.core.component.item.constant.layout.home;
 
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import ru.solomka.client.controller.http.UpdateHandler;
 import ru.solomka.client.core.component.ComponentBuilder;
 import ru.solomka.client.core.component.ResourceConstant;
@@ -34,6 +37,22 @@ public class UpdateViewerEntry implements SceneModule<LinkedPane> {
         );
 
         ImageButton refreshUpdateContent = new ImageButton(20, 20, ItemAlignment.RIGHT, new Image(ResourceConstant.LOGO_REFRESH_CONTENT));
+
+
+        refreshUpdateContent.setup((_, _) -> {
+            try {
+                refreshUpdateContent.animation(() -> {
+                    RotateTransition anim = new RotateTransition(Duration.seconds(0.9), refreshUpdateContent.getItem());
+                    anim.setFromAngle(0);
+                    anim.setToAngle(-360);
+                    anim.setInterpolator(Interpolator.LINEAR);
+                    return anim;
+                });
+            } catch (InstantiationException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
 
         SceneItem<?> dataOfUpdate = UpdateHandler.getUpdateData().isEmpty()
                 ? new DefaultLabel("No information of update", new Pair<>(12, CssProperties.TEXT_FILL_COLOR.getProperty("#989696")))
@@ -72,8 +91,8 @@ public class UpdateViewerEntry implements SceneModule<LinkedPane> {
         }
 
         dataOfUpdate.setLocation(
-                (dataOfUpdate instanceof DefaultLabel ? WindowCalcHelper.getNegativeCentreOfLabel(this.container.getItem(), (Label) dataOfUpdate.getItem())[0] : dataOfUpdate.getItem().getLayoutX()),
-                defaultUpdateContent.getItem().getLayoutY() + 35
+                (dataOfUpdate instanceof DefaultLabel ? WindowCalcHelper.getNegativeCentreOfLabel(this.container.getItem(), (Label) ((AnchorPane) dataOfUpdate.getItem()).getChildren().getFirst() )[0] : dataOfUpdate.getItem().getLayoutX()),
+                (dataOfUpdate instanceof DefaultLabel ? defaultUpdateContent.getItem().getLayoutY() + 45 : defaultUpdateContent.getItem().getLayoutY() + 35)
         );
 
         this.container.addChildren(topContainer);

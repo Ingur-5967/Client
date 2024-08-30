@@ -7,7 +7,6 @@ import ru.solomka.client.core.component.item.LazyComponent;
 import ru.solomka.client.core.component.item.SceneItem;
 import ru.solomka.client.core.component.item.impl.base.BasePane;
 import ru.solomka.client.core.component.item.tag.Linked;
-import ru.solomka.client.core.component.item.tag.enums.ComponentType;
 import ru.solomka.client.tool.Pair;
 import ru.solomka.client.tool.functional.OperationSupplier;
 
@@ -57,32 +56,11 @@ public class LinkedPane extends BasePane implements LazyComponent<LinkedPane, An
 
     @Override
     public Node get(String id) {
-        return this.getItem().getChildren().stream().filter(n -> n.getId() != null && n.getId().equals(id)).findAny().orElse(null);
+        return this.getItem().getChildren().stream().filter(node -> node.getId() != null && node.getId().equals(id)).findAny().orElse(null);
     }
 
     @Override
     public Node get(int position) {
         return this.getItem().getChildren().get(position);
     }
-
-    @Override
-    public Node get(int position, ComponentType type) {
-        List<Node> nodes = this.getItem().getChildren().stream().filter(c -> c.getClass().isInstance(type.getInstance())).toList();
-        for(int index = 0; index < nodes.size(); index++) {
-            if(index == position)
-                return nodes.get(index);
-        }
-        return null;
-    }
-
-    @Override
-    public Node findFirst(ComponentType type) {
-        return this.getItem().getChildren().getFirst();
-    }
-
-    @Override
-    public Node findLast(ComponentType type) {
-        return this.getItem().getChildren().getLast();
-    }
-
 }

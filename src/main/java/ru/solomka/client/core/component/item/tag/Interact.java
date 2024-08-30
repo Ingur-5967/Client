@@ -1,7 +1,6 @@
 package ru.solomka.client.core.component.item.tag;
 
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import ru.solomka.client.tool.Pair;
