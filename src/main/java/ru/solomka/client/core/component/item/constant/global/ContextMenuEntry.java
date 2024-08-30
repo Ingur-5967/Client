@@ -1,13 +1,15 @@
 package ru.solomka.client.core.component.item.constant.global;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.AppLoader;
+import ru.solomka.client.core.component.Padding;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.constant.SceneModule;
 import ru.solomka.client.core.component.item.impl.LinkedPane;
+import ru.solomka.client.core.component.item.impl.button.ImageButton;
+import ru.solomka.client.core.component.item.tag.enums.ItemAlignment;
 
 import java.util.List;
 
@@ -15,32 +17,20 @@ public class ContextMenuEntry implements SceneModule<LinkedPane> {
 
     private final LinkedPane container;
 
-    public ContextMenuEntry(Pane parent, int horizontalSpace, int verticalSpace) {
+    public ContextMenuEntry(@NotNull Pane parent, @NotNull Padding padding, int verticalSpace) {
 
-        this.container = new LinkedPane(35 + horizontalSpace, 18, "contextMenu");
+        this.container = new LinkedPane(35 + padding.getLeft() + padding.getRight(), 18, "contextMenu");
 
-        ImageView closeApp = new ImageView(new Image(ResourceConstant.LOGO_CLOSE_APP));
-        ImageView rollUpApp = new ImageView(new Image(ResourceConstant.LOGO_ROLL_UP_APP));
+        ImageButton closeAppIcon = new ImageButton(18, 18, ItemAlignment.LEFT, new Image(ResourceConstant.LOGO_CLOSE_APP));
+        ImageButton rollUpAppIcon = new ImageButton(18, 17, ItemAlignment.RIGHT, new Image(ResourceConstant.LOGO_ROLL_UP_APP));
 
-        closeApp.setFitHeight(18);
-        closeApp.setFitWidth(18);
+        closeAppIcon.setup((_, _) -> AppLoader.getPrimaryStage().close()); //todo: Terminate any process
+        rollUpAppIcon.setup((_, _) -> AppLoader.getPrimaryStage().toBack());
 
-        rollUpApp.setFitWidth(17);
-        rollUpApp.setFitHeight(17);
+        closeAppIcon.setLocation(0, 0);
+        rollUpAppIcon.setLocation(closeAppIcon.getItem().getLayoutX() + padding.getLeft() + padding.getRight(), closeAppIcon.getItem().getLayoutY());
 
-        AnchorPane closeAppWrapper = new AnchorPane(closeApp);
-        AnchorPane rollUpWrapper = new AnchorPane(rollUpApp);
-
-        closeAppWrapper.setLayoutX(0);
-        closeAppWrapper.setLayoutY(0);
-
-        rollUpWrapper.setLayoutX(closeApp.getLayoutX() + horizontalSpace);
-        rollUpWrapper.setLayoutY(0);
-
-        closeAppWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().close()); // todo: terminate any process
-        rollUpWrapper.setOnMouseClicked(_ -> AppLoader.getPrimaryStage().toBack());
-
-        this.container.getChildren().addAll(List.of(closeAppWrapper, rollUpWrapper));
+        this.container.getChildren().addAll(List.of(closeAppIcon.getItem(), rollUpAppIcon.getItem()));
         this.container.setLocation(parent.getPrefWidth() - this.container.getBounds().getWidth(), verticalSpace);
     }
 

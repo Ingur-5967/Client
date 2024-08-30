@@ -34,7 +34,7 @@ public class FriendViewerEntry implements SceneModule<LinkedPane> {
                 20, 20, ItemAlignment.RIGHT, new Image(ResourceConstant.LOGO_REFRESH_CONTENT)
         );
 
-        refreshUserList.setup((event, source) -> {
+        refreshUserList.setup((_, _) -> {
             try {
                 refreshUserList.animation(() -> {
                     RotateTransition anim = new RotateTransition(Duration.seconds(0.9), refreshUserList.getItem());
@@ -46,8 +46,6 @@ public class FriendViewerEntry implements SceneModule<LinkedPane> {
             } catch (InstantiationException | IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
-
-
 
         });
 

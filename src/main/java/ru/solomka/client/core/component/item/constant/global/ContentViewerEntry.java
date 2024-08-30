@@ -3,6 +3,7 @@ package ru.solomka.client.core.component.item.constant.global;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import org.jetbrains.annotations.NotNull;
+import ru.solomka.client.core.component.Padding;
 import ru.solomka.client.core.component.ResourceConstant;
 import ru.solomka.client.core.component.item.constant.SceneModule;
 import ru.solomka.client.core.component.item.impl.LinkedPane;
@@ -43,7 +44,7 @@ public class ContentViewerEntry implements SceneModule<LinkedPane> {
         search.setLocation(search.getItem().getLayoutX() + 20, search.getItem().getLayoutY() + 20);
         notification.setLocation(search.getItem().getPrefWidth() + 35, WindowCalcHelper.getPositiveCentre(search.getItem(), notification.getItem())[1] + 2);
 
-        LinkedPane contextMenuEntry = new ContextMenuEntry(this.container.getItem(), 24, 7).build();
+        LinkedPane contextMenuEntry = new ContextMenuEntry(this.container.getItem(), new Padding(24, 0, 0, 0), 7).build();
 
         this.container.addChildren(notification);
         this.container.addChildren(contextMenuEntry);
