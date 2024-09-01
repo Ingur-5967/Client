@@ -15,7 +15,6 @@ import ru.solomka.client.core.component.option.CssProperties;
 
 public class HomeLayout implements Layout {
 
-
     @Override
     public void loadLayout(Pane region, SceneEntry entry) {
 

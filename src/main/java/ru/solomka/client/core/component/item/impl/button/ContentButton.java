@@ -52,13 +52,13 @@ public class ContentButton extends BaseButton implements Changed<Boolean> {
             parent.getChildren().add(item);
         }
 
-        int fixedX;
+        int fixedX = -1;
         if (source.getOrientation() == ItemAlignment.LEFT)
             fixedX = 0;
-        else {
-            if (content == null) return;
+        else if(content != null)
             fixedX = (int) (((AnchorPane) content.getItem()).getPrefWidth() + imageEditor.getRight());
-        }
+
+        if(fixedX == -1) return;
 
         source.getItem().setLayoutX(fixedX + imageEditor.getLeft() + imageEditor.getRight());
         source.getItem().setLayoutY(WindowCalcHelper.getNegativeCentre(parent, source.getItem())[1] + imageEditor.getTop() + imageEditor.getBottom());

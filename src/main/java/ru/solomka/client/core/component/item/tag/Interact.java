@@ -9,5 +9,4 @@ import java.util.function.BiConsumer;
 
 public interface Interact {
   <E extends Event> void setup(BiConsumer<E, Pair<Stage, Node>> interact);
-
 }

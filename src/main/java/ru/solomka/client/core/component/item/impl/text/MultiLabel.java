@@ -2,6 +2,7 @@ package ru.solomka.client.core.component.item.impl.text;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import org.jetbrains.annotations.NotNull;
 import ru.solomka.client.core.component.item.impl.base.BaseText;
 import ru.solomka.client.tool.Pair;
 
@@ -11,7 +12,7 @@ public class MultiLabel extends BaseText {
 
     private final Pair<Label, Label> content;
 
-    public MultiLabel(Label mainContent, Label subContent, int verticalSpace) {
+    public MultiLabel(@NotNull Label mainContent, Label subContent, int verticalSpace) {
         super(mainContent.getText(), (int) mainContent.getFont().getSize());
 
         this.content = new Pair<>(mainContent, subContent);

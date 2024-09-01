@@ -1,6 +1,5 @@
 package ru.solomka.client.core.component.item.constant.global;
 
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +16,7 @@ import ru.solomka.client.core.component.item.impl.LinkedPane;
 import ru.solomka.client.core.component.item.impl.button.ContentButton;
 import ru.solomka.client.core.component.item.impl.text.DefaultLabel;
 import ru.solomka.client.core.component.item.impl.text.MultiLabel;
+import ru.solomka.client.core.component.item.tag.Interact;
 import ru.solomka.client.core.component.item.tag.enums.ItemAlignment;
 import ru.solomka.client.core.component.option.CssContext;
 import ru.solomka.client.core.component.option.CssProperties;
@@ -66,7 +66,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
                                 .text("Beta version").css(
                                         new CssContext(CssProperties.FONT_SIZE.getProperty(12)),
                                         new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty(ResourceConstant.Color.SUB_TEXT_BAR.getColor()))).text("Beta version")
-                                .create().getItem(), 14
+                                .create().getItem(), 15
                 ).load()
         );
 
@@ -91,7 +91,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         ).initStyle(new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
 
         //test profile block
-        String username = "User32@mail.ru + negr";
+        String username = "SuperNegrProfessional";
 
         Image profileLogo = ComponentBuilder.of(new ImageView(new File("D:\\Profile-test.png").getPath()))
                                             .wrapper().size(25, 25)
@@ -109,7 +109,7 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
                                 new CssContext(CssProperties.FONT_SIZE.getProperty(12)),
                                 new CssContext(CssProperties.TEXT_FILL_COLOR.getProperty("#0A5F38"))).text("Expired: 01.08.24")
                                 .create().getItem(),
-                        14
+                        15
                 ),
                 new Pair<>(new Padding(5,0,9,0), new Padding(14,0,0,0))
         ).initStyle(new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent")));
@@ -119,15 +119,18 @@ public class ElementBarEntry implements SceneModule<LinkedPane> {
         for (int eIndex = 1; eIndex < initialPane.getChildren().size(); eIndex++) {
 
             if(eIndex == initialPane.getChildren().size() - 1) {
-                container.get(eIndex).setLayoutY(this.container.getItem().getPrefHeight() - ((AnchorPane) container.get(eIndex)).getPrefHeight() - 12);
+                container.get(eIndex).setLayoutY(this.container.getItem().getPrefHeight() - ((AnchorPane) container.get(eIndex)).getPrefHeight() - 15);
                 break;
             }
+
             container.get(eIndex).setLayoutY(container.get(eIndex - 1).getLayoutY() + (eIndex == 1 ? initialPane.getPrefHeight() / 3.5 : 65));
         }
 
         this.container.getSource().stream().skip(1).forEach(element -> {
-            Node node = element.getItem();
-            node.setOnMouseClicked(_ -> new ChangeStateEvent().onTriggeredEvent(this.container, element));
+            ((Interact) element).setup((_, _) -> {
+                new ChangeStateEvent().onTriggeredEvent(this.container, element);
+                //todo change category event
+            });
         });
 
         initialPane.setStyle(CssContext.build(properties));

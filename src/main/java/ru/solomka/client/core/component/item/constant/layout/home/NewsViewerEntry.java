@@ -23,12 +23,9 @@ public class NewsViewerEntry implements SceneModule<LinkedPane> {
 
         DefaultLabel newsTitle = new DefaultLabel("Новости", new Pair<>(21, CssProperties.TEXT_FILL_COLOR.getProperty("white")));
 
-        //Test add
-
         ImageScroll scrollingTool = new ImageScroll(width, height - 90, "newsList").initStyle(
                 new CssContext(CssProperties.BACKGROUND_COLOR.getProperty("transparent"))
         );
-
 
         scrollingTool.setContent(
                 new ImageViewer(width, height - 90, ItemAlignment.NONE, new Image(ResourceConstant.O)),
@@ -37,8 +34,8 @@ public class NewsViewerEntry implements SceneModule<LinkedPane> {
 
         scrollingTool.init();
 
-        scrollingTool.setLocation(0, newsTitle.getItem().getLayoutY() + 30 );
         newsTitle.setLocation(0, 0);
+        scrollingTool.setLocation(0, newsTitle.getItem().getLayoutY() + 30);
 
         this.container.addChildren(scrollingTool);
         this.container.addChildren(newsTitle);
